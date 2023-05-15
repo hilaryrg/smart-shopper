@@ -1,28 +1,48 @@
 import React, { useState } from "react";
+import ErrorList from "../layout/ErrorList";
 import FormError from "../layout/FormError";
 import config from "../../config";
+import translateServerErrors from "../../services/translateServerErrors"
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
     password: "",
     passwordConfirmation: "",
+    username: "",
+    zipCode: ""
   });
 
   const [errors, setErrors] = useState({});
+  const [serverErrors, setServerErrors] = useState({});
 
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
-    const emailRegexp = config.validation.email.regexp;
+    const { email, password, passwordConfirmation, username, zipCode } = payload;
+    const emailRegexp = config.validation.email.regexp.emailRegex;
+    const zipCodeRegexp = config.validation.zipCode.regexp.zipCodeRegex;
     let newErrors = {};
 
     if (!email.match(emailRegexp)) {
       newErrors = {
         ...newErrors,
         email: "is invalid",
+      };
+    }
+
+    if (username.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        username: "is required",
+      };
+    }
+
+    if (!zipCode.match(zipCodeRegexp)) {
+      newErrors = {
+        ...newErrors,
+        zipCode: "is invalid",
       };
     }
 
@@ -67,6 +87,11 @@ const RegistrationForm = () => {
             }),
           });
           if (!response.ok) {
+            if (response.status === 422) {
+              const errorBody = await response.json()
+              const newServerErrors = translateServerErrors(errorBody.errors)
+              setServerErrors(newServerErrors)
+            }
             const errorMessage = `${response.status} (${response.statusText})`;
             const error = new Error(errorMessage);
             throw error;
@@ -92,20 +117,54 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="grid-container">
-      <h1>Register</h1>
+    <div className="registration-form x-grid">
+      <h1 className="registration-form-header">Register</h1>
+      <ErrorList errors={serverErrors} />
       <form onSubmit={onSubmit}>
         <div>
-          <label>
+          <label className="registration-form-label">
             Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
+            <input
+              className="registration-form-input" 
+              type="text" 
+              name="email" 
+              value={userPayload.email} 
+              onChange={onInputChange} 
+            />
             <FormError error={errors.email} />
           </label>
         </div>
         <div>
-          <label>
+          <label className="registration-form-label">
+            Username
+            <input
+              className="registration-form-input" 
+              type="text"
+              name="username"
+              value={userPayload.username}
+              onChange={onInputChange}
+            />
+              <FormError error={errors.username} />
+          </label>
+        </div>
+        <div>
+          <label className="registration-form-label">
+            Zip Code
+            <input
+              className="registration-form-input" 
+              type="text"
+              name="zipCode"
+              value={userPayload.zipCode}
+              onChange={onInputChange}
+            />
+              <FormError error={errors.zipCode} />
+          </label>
+        </div>        
+        <div>
+          <label className="registration-form-label">
             Password
             <input
+              className="registration-form-input" 
               type="password"
               name="password"
               value={userPayload.password}
@@ -115,9 +174,10 @@ const RegistrationForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="registration-form-label">
             Password Confirmation
             <input
+              className="registration-form-input" 
               type="password"
               name="passwordConfirmation"
               value={userPayload.passwordConfirmation}
@@ -127,7 +187,7 @@ const RegistrationForm = () => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button" value="Register" />
+          <input type="submit" className="registration-form-button" value="Register" />
         </div>
       </form>
     </div>
