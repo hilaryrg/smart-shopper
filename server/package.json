@@ -20,7 +20,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "name": "breakable-toy-server",
+  "name": "smart-shopper-server",
   "engines": {
     "node": "^16.18"
   },

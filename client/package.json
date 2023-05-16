@@ -5,7 +5,7 @@
   },
   "license": "UNLICENSED",
   "private": true,
-  "name": "breakable-toy-client",
+  "name": "smart-shopper-client",
   "version": "0.0.1",
   "engines": {
     "node": "^16.18"
