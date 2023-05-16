@@ -27,7 +27,7 @@ $font-accent: 'Gill Sans';
   border-radius: .5rem;
   background-color: $color-main-light-accent;
   width: 75%;
-  margin: 5%;
+  margin: 7% auto;
 
   input:focus {
     opacity: .7;
@@ -38,13 +38,14 @@ $font-accent: 'Gill Sans';
   color: $color-font-dark;
   font-family: $font-master;
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
   margin-bottom: .5rem;
 }
 
 .registration-form-label {
   color: $color-font-dark;
   font-family: $font-master;
+  font-weight: bold;
   letter-spacing: 1px;
 }
 
@@ -58,18 +59,21 @@ $font-accent: 'Gill Sans';
 .registration-form-button {
   color: $color-font-light;
   font-family: $font-master;
-  font-weight: bold;
+  font-weight: bolder;
   text-transform: uppercase;
-  letter-spacing:1px;
+  letter-spacing: 1px;
   border-radius: 30px;
   background: $color-main-dark;
   border: 1.5px solid $color-main-dark;
   width: 25%;
   padding: .75rem;
+  margin-top: 1rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
   
   &:hover {
-    background-color: $color-font-light;
-    border-color: $color-main-dark;
-    color: $color-main-dark
+    background-color: darken($color-main-dark, 10%);
+    border-color: darken($color-main-dark, 10%);
   }
 }
