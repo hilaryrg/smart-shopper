@@ -1,6 +1,7 @@
 const Model = require("./Model.js")
 
 class List extends Model {
+
     static get tableName() {
         return ("lists")
     }

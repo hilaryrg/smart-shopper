@@ -8,9 +8,7 @@ const TopBar = ({ user }) => {
       <Link to="/user-sessions/new">Sign In</Link>
     </li>,
     <li key="sign-up">
-      <Link to="/users/new" className="button">
-        Sign Up
-      </Link>
+      <Link to="/users/new">Sign Up</Link>
     </li>,
   ];
 
@@ -20,18 +18,33 @@ const TopBar = ({ user }) => {
     </li>,
   ];
 
+  let authenticatedUsername = [
+  ]
+  if(user) {
+    authenticatedUsername = [
+      <div key="username">
+        {user.username}
+      </div>
+    ]
+  }
+
   return (
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
           <li className="menu-text">App</li>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/lists">My Lists</Link>
+          </li>
+          <li>
+            <Link to="/lists/new">New List</Link>
           </li>
         </ul>
       </div>
       <div className="top-bar-right">
-        <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+        <ul className="menu">
+          {authenticatedUsername}{user ? authenticatedListItems : unauthenticatedListItems}
+        </ul>
       </div>
     </div>
   );

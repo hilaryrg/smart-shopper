@@ -1,15 +1,18 @@
-import { List } from "../../models/index.js"
+import { List, User } from "../../models/index.js"
 
-class ListsSeeder {
-    static async seed()
-    {
+class ListSeeder {
+    static async seed() {
+    const user1 = await User.query().findOne({ email: "yukon@example.com" })
+    const user2 = await User.query().findOne({ email: "hilary@example.com" })
+    const user3 = await User.query().findOne({ email: "alisal@example.com" })
+
         const lists = [{
             name: "Test Grocery List",
             description: "This is a grocery list from the seeder to be used as a test.",
             type: "grocery",
             store: "star market",
             status: "to do",
-            userId: "1",
+            userId: user1.id,
         },
         {
             name: "Test Drugstore List",
@@ -17,7 +20,7 @@ class ListsSeeder {
             type: "drugstore",
             store: "cvs",
             status: "in progress",
-            userId: "1",
+            userId: user1.id,
         },
         {
             name: "Test Grocery List 2",
@@ -25,19 +28,20 @@ class ListsSeeder {
             type: "grocery",
             store: "target",
             status: "to do",
-            userId: "2",
+            userId: user2.id,
         },
         {
             name: "Test List with missing information",
             description: "This test list does not have a store value",
             type: "general",
             status: "to do",
-            userId: "3",
+            userId: user3.id,
         }]
+
         for (const list of lists) {
             await List.query().insert(list)
         }
     }
 }
 
-export default ListsSeeder
+export default ListSeeder

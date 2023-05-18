@@ -1,6 +1,6 @@
 import { User } from "../../models/index.js"
 
-class UsersSeeder {
+class UserSeeder {
     static async seed()
     {
         const users = [{
@@ -30,4 +30,4 @@ class UsersSeeder {
     }
 }
 
-export default UsersSeeder
+export default UserSeeder
