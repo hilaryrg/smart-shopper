@@ -9,6 +9,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import ListIndex from "./ListIndexPage"
 import NewListForm from "./NewListForm"
+import ListShow from "./ListShowPage"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -30,10 +31,11 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>Hello from react</h2>
+          <h2>This is the home page of the app</h2>
         </Route>
         <Route exact path="/lists" component={ListIndex} />
         <Route exact path="/lists/new" component={NewListForm} />
+        <Route exact path="/lists/:id" component={ListShow} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

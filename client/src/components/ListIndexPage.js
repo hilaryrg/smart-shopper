@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const ListIndex = props => {
+const ListIndex = (props) => {
     const [ lists, setLists ] = useState([])
 
     const getLists = async () => {
@@ -23,15 +23,18 @@ const ListIndex = props => {
 
     const listsList = lists.map(list => {
         return (
-            <p> {`${list.name}`} </p>
+            <div className="list-index-page-callout">
+                <Link className="list-index-list-name" to={`/lists/${list.id}`}> {`${list.name}`} </Link>
+                <p>{list.status}</p>
+            </div>
         )
     })
 
     return (
-        <div>
-            <h2>My Lists</h2>
+        <div className="list-index-page">
+            <h2 className="list-index-header">My Lists</h2>
             <p>{listsList}</p>
-            <Link to="/lists/new">New List</Link>
+            <Link className="new-list-link-button" to="/lists/new">New List</Link>
         </div>
     )
 }

@@ -9,7 +9,8 @@ const NewListForm = props => {
         description: "",
         type: "",
         store: "",
-        status: ""
+        status: "",
+        id: null
     }
 
     const [newList, setNewList] = useState(defaultList)
@@ -34,11 +35,9 @@ const NewListForm = props => {
                     const errorMessage = await response.json()
                     throw new Error(errorMessage)
                 }
-            // } else {
-            //     const body = response.json()
-            //     setShouldRedirect({status: true, listId: body.listId})
-            // }
             } else {
+                const body = await response.json()
+                setNewList(body.list)
                 setShouldRedirect(true)
             }
         } catch(err) {
@@ -63,13 +62,9 @@ const NewListForm = props => {
         clearForm()
     }
 
-if(shouldRedirect) {
-    return <Redirect push to="/" />
-}
-
-    // if(shouldRedirect.status === true) {
-    //     return <Redirect push to={`/lists/${listId}`} />
-    // }
+    if(shouldRedirect === true) {
+        return <Redirect push to={`/lists/${newList.id}`} />
+    }
 
     return (
         <div className="new-list-form">

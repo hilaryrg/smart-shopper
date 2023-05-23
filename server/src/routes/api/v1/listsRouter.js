@@ -35,4 +35,16 @@ listsRouter.post("/", async (req, res) => {
     }
 })
 
+listsRouter.get("/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const list = await List.query().findById(id)
+        const serializedList = ListSerializer.serializedList(list)
+        return res.status(200).json({ list: serializedList })
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({ errors: err.message })
+    }
+})
+
 export default listsRouter
