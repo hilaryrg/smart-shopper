@@ -30,7 +30,7 @@ $font-accent: 'Gill Sans';
   margin: 7% auto;
 
   input:focus {
-    opacity: .7;
+    opacity: .95;
   }
 }
 
@@ -52,7 +52,7 @@ $font-accent: 'Gill Sans';
 .registration-form-input {
   border-radius: 30px;
   border: none;
-  opacity: .4;
+  opacity: .7;
   transition: all ease .4s;
 }
 
@@ -81,12 +81,12 @@ $font-accent: 'Gill Sans';
 .new-list-form {
   padding: .75rem 1.25em;
   border-radius: .5rem;
-  background-color: darken($color-main-light, 10%);
+  background-color: $color-main-light-accent;
   width: 80%;
   margin: 5% auto;
 
   input:focus {
-    opacity: 1;
+    opacity: .95;
   }
 }
 
@@ -108,7 +108,7 @@ $font-accent: 'Gill Sans';
 .new-list-form-input {
   border-radius: 30px;
   border: none;
-  opacity: .8;
+  opacity: .7;
   transition: all ease .4s;
 }
 
@@ -132,4 +132,74 @@ $font-accent: 'Gill Sans';
     background-color: darken($color-main-dark, 10%);
     border-color: darken($color-main-dark, 10%);
   }
+}
+
+.list-index-page {
+  background: $color-main-light-accent;
+  padding: 1rem 1.5em 25rem 1.5rem;
+}
+
+.list-index-header {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.list-index-page-callout {
+  color: $color-font-dark;
+  font-family: $font-master;
+  background: lighten($color-main-light-accent, 12%);
+  margin: .5rem;
+  border-radius: 5px;
+  width: 75%;
+  padding: 1%;
+}
+
+.list-index-list-name {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+
+  &:hover {
+    color: $color-main-bright-accent;
+  }
+}
+
+.new-list-link-button {
+  color: $color-font-light;
+  font-family: $font-master;
+  font-weight: bolder;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  background: $color-main-dark;
+  border: 1.5px solid $color-main-dark;
+  padding: .75rem;
+  display: inline-block;
+  margin-top: .75rem;
+  
+  &:hover {
+    background-color: darken($color-main-dark, 10%);
+    border-color: darken($color-main-dark, 10%);
+  }
+}
+
+.list-show-page {
+  background-color: $color-main-light;
+  padding: 1rem 1.5em 25rem 1.5rem;
+}
+
+.list-show-list-name {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.list-show-list-body {
+  color: $color-font-dark;
+  font-family: $font-master;
+  margin-bottom: 1rem;
 }
