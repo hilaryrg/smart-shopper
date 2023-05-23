@@ -1,6 +1,7 @@
 const Model = require("./Model.js")
 
 class List extends Model {
+
     static get tableName() {
         return ("lists")
     }
@@ -8,7 +9,7 @@ class List extends Model {
     static get jsonSchema() {
         return {
             type: "object",
-            required: ["name", "description"],
+            required: ["name", "description", "userId"],
             properties: {
                 name: {
                     type: "string"

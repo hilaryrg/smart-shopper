@@ -121,74 +121,66 @@ const RegistrationForm = () => {
       <h1 className="registration-form-header">Register</h1>
       <ErrorList errors={serverErrors} />
       <form onSubmit={onSubmit}>
-        <div>
-          <label className="registration-form-label">
-            Email
-            <input
-              className="registration-form-input" 
-              type="text" 
-              name="email" 
-              value={userPayload.email} 
-              onChange={onInputChange} 
-            />
-            <FormError error={errors.email} />
-          </label>
-        </div>
-        <div>
-          <label className="registration-form-label">
-            Username
-            <input
-              className="registration-form-input" 
-              type="text"
-              name="username"
-              value={userPayload.username}
-              onChange={onInputChange}
-            />
-              <FormError error={errors.username} />
-          </label>
-        </div>
-        <div>
-          <label className="registration-form-label">
-            Zip Code
-            <input
-              className="registration-form-input" 
-              type="text"
-              name="zipCode"
-              value={userPayload.zipCode}
-              onChange={onInputChange}
-            />
-              <FormError error={errors.zipCode} />
-          </label>
-        </div>        
-        <div>
-          <label className="registration-form-label">
-            Password
-            <input
-              className="registration-form-input" 
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
-        </div>
-        <div>
-          <label className="registration-form-label">
-            Password Confirmation
-            <input
-              className="registration-form-input" 
-              type="password"
-              name="passwordConfirmation"
-              value={userPayload.passwordConfirmation}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.passwordConfirmation} />
-          </label>
-        </div>
-        <div>
-          <input type="submit" className="registration-form-button" value="Register" />
-        </div>
+        <label className="registration-form-label">
+          Email
+          <input
+            className="registration-form-input" 
+            type="text" 
+            name="email" 
+            value={userPayload.email} 
+            onChange={onInputChange} 
+          />
+          <FormError error={errors.email} />
+        </label>
+        <label className="registration-form-label">
+          Username
+          <input
+            className="registration-form-input" 
+            type="text"
+            name="username"
+            value={userPayload.username}
+            onChange={onInputChange}
+          />
+          <FormError error={errors.username} />
+        </label>
+        <label className="registration-form-label">
+          Zip Code
+          <input
+            className="registration-form-input" 
+            type="text"
+            name="zipCode"
+            value={userPayload.zipCode}
+            onChange={onInputChange}
+          />
+          <FormError error={errors.zipCode} />
+        </label>
+        <label className="registration-form-label">
+          Password
+          <input
+            className="registration-form-input" 
+            type="password"
+            name="password"
+            value={userPayload.password}
+            onChange={onInputChange}
+          />
+          <FormError error={errors.password} />
+        </label>
+        <label className="registration-form-label">
+          Password Confirmation
+          <input
+            className="registration-form-input" 
+            type="password"
+            name="passwordConfirmation"
+            value={userPayload.passwordConfirmation}
+            onChange={onInputChange}
+          />
+          <FormError error={errors.passwordConfirmation} />
+        </label>
+          <input 
+            className="registration-form-button" 
+            type="submit" 
+            value="Register" 
+          />
       </form>
     </div>
   );

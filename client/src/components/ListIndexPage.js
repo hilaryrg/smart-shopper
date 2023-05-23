@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const ListIndex = props => {
     const [ lists, setLists ] = useState([])
@@ -30,6 +31,7 @@ const ListIndex = props => {
         <div>
             <h2>My Lists</h2>
             <p>{listsList}</p>
+            <Link to="/lists/new">New List</Link>
         </div>
     )
 }

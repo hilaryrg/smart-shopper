@@ -8,6 +8,7 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import ListIndex from "./ListIndexPage"
+import NewListForm from "./NewListForm"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -32,6 +33,7 @@ const App = (props) => {
           <h2>Hello from react</h2>
         </Route>
         <Route exact path="/lists" component={ListIndex} />
+        <Route exact path="/lists/new" component={NewListForm} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

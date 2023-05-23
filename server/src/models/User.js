@@ -40,11 +40,13 @@ class User extends uniqueFunc(Model) {
   static get relationMappings() {
     const { List } = require("./index.js")
     return {
-      relation: Model.HasManyRelation,
-      modelClass: List,
-      join: {
-        from: "users.id",
-        to: "lists.userId"
+      lists: {
+        relation: Model.HasManyRelation,
+        modelClass: List,
+        join: {
+          from: "users.id",
+          to: "lists.userId"
+        }
       }
     }
   }
