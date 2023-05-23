@@ -2,6 +2,7 @@ import express from "express"
 import { List } from "../../../models/index.js"
 import ListSerializer from "../../../db/serializers/ListsSerializer.js"
 import { ValidationError } from "objection"
+import cleanUserInput from "../../../services/cleanUserInput.js"
 
 const listsRouter = new express.Router()
 
@@ -20,9 +21,12 @@ listsRouter.post("/", async (req, res) => {
     try {
         const { body } = req
         const cleanedInput = cleanUserInput(body.list)
+        const userId = req.user.id
+        cleanedInput.userId = userId
         const list = await List.query().insertAndFetch(cleanedInput)
         res.status(201).json({ list: list })
     } catch (err) {
+        console.log(err)
         if (err instanceof ValidationError) {
             res.status(422).json({ errors: err.data })
         } else {

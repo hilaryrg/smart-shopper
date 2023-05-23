@@ -34,9 +34,12 @@ const NewListForm = props => {
                     const errorMessage = await response.json()
                     throw new Error(errorMessage)
                 }
+            // } else {
+            //     const body = response.json()
+            //     setShouldRedirect({status: true, listId: body.listId})
+            // }
             } else {
-                const body = response.json()
-                setShouldRedirect({status: true, listId: body.listId})
+                setShouldRedirect(true)
             }
         } catch(err) {
             console.error("Error in fetch", err.message)
@@ -60,9 +63,13 @@ const NewListForm = props => {
         clearForm()
     }
 
-    if(shouldRedirect.status === true) {
-        return <Redirect push to={`/lists/${listId}`} />
-    }
+if(shouldRedirect) {
+    return <Redirect push to="/" />
+}
+
+    // if(shouldRedirect.status === true) {
+    //     return <Redirect push to={`/lists/${listId}`} />
+    // }
 
     return (
         <div className="new-list-form">
@@ -96,7 +103,8 @@ const NewListForm = props => {
                     <select
                         className="new-list-form-input"
                         name="type"
-                        id="type">
+                        id="type"
+                        onChange={handleInputChange}>
                         <option value=""></option>
                         <option value="grocery">Grocery</option>
                         <option value="drugstore">Drugstore</option>
@@ -109,7 +117,8 @@ const NewListForm = props => {
                     <select
                         className="new-list-form-input"
                         name="store"
-                        id="store">
+                        id="store"
+                        onChange={handleInputChange}>
                         <option value=""></option>
                         <option value="target">Target</option>
                         <option value="trader joe\'s">Trader Joe's</option>
@@ -124,7 +133,8 @@ const NewListForm = props => {
                     <select
                         className="new-list-form-input"
                         name="status"
-                        id="status">
+                        id="status"
+                        onChange={handleInputChange}>
                         <option value="to do">To Do</option>
                         <option value="in progress">In Progress</option>
                         <option value="done">Done</option>
