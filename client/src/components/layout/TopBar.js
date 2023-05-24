@@ -22,9 +22,9 @@ const TopBar = ({ user }) => {
   ]
   if(user) {
     authenticatedUsername = [
-      <div key="username">
+      <li key="username">
         {user.username}
-      </div>
+      </li>
     ]
   }
 
@@ -32,18 +32,15 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">App</li>
-          <li>
-            <Link to="/lists">My Lists</Link>
-          </li>
-          <li>
-            <Link to="/lists/new">New List</Link>
-          </li>
+            <Link to="/home">Home</Link>
+            {user ? <Link to="/lists">My Lists</Link> : null}
+            {user ? <Link to="/lists/new">New List</Link> : null}
         </ul>
       </div>
       <div className="top-bar-right">
         <ul className="menu">
-          {authenticatedUsername}{user ? authenticatedListItems : unauthenticatedListItems}
+          {authenticatedUsername}
+          {user ? authenticatedListItems : unauthenticatedListItems}
         </ul>
       </div>
     </div>

@@ -10,6 +10,7 @@ import TopBar from "./layout/TopBar";
 import ListIndex from "./ListIndexPage"
 import NewListForm from "./NewListForm"
 import ListShow from "./ListShowPage"
+import Home from "./HomePage"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -30,9 +31,8 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <h2>This is the home page of the app</h2>
-        </Route>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/home" component={Home} />
         <Route exact path="/lists" component={ListIndex} />
         <Route exact path="/lists/new" component={NewListForm} />
         <Route exact path="/lists/:id" component={ListShow} />
