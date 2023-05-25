@@ -37,7 +37,7 @@ class List extends Model {
     }
 
     static get relationMappings() {
-        const { User } = require("./index.js")
+        const { User, Item, ListItems } = require("./index.js")
         return {
             user: {
                 relation: Model.BelongsToOneRelation,
@@ -45,6 +45,26 @@ class List extends Model {
                 join: {
                     from: "lists.userId",
                     to: "users.id"
+                }
+            },
+            listItems: {
+                relation: Model.HasManyRelation,
+                modelClass: ListItems,
+                join: {
+                    from: "lists.id",
+                    to: "listItems.listId"
+                }
+            },
+            items: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Item,
+                join: {
+                    from: "lists.id",
+                    through: { 
+                        from: "listItems.listId",
+                        to: "listItems.itemId",
+                    },
+                    to: "items.id"
                 }
             }
         }

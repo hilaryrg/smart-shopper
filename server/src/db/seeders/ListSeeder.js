@@ -39,7 +39,10 @@ class ListSeeder {
         }]
 
         for (const list of lists) {
-            await List.query().insert(list)
+            const inDB = await List.query().findOne( {name: list.name} )
+            if (!inDB) {
+                await List.query().insert(list)
+            }
         }
     }
 }
