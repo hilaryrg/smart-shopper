@@ -39,7 +39,7 @@ listsRouter.get("/:id", async (req, res) => {
     const { id } = req.params
     try {
         const list = await List.query().findById(id)
-        const serializedList = ListSerializer.serializedList(list)
+        const serializedList = await ListSerializer.serializedList(list)
         return res.status(200).json({ list: serializedList })
     } catch (err) {
         console.log(err)

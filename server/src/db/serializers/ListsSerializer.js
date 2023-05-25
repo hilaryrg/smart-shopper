@@ -7,19 +7,21 @@ class ListSerializer {
                 description: list.description,
                 type: list.type,
                 store: list.store,
-                status: list.status
+                status: list.status 
             }
         })
         return newLists
     }
 
-    static serializedList(list) {
+    static async serializedList(list) {
         const allowedAttributes = ["id", "name", "description", "type", "store", "status", "userId"]
         let newList = {}
         for (const attribute of allowedAttributes) {
             newList[attribute] = list[attribute]
         }
-    return newList
+        newList.items = await list.$relatedQuery("items")
+        console.log(newList)
+        return newList
     }
 }
 

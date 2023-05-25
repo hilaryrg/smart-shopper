@@ -187,19 +187,39 @@ $font-accent: 'Gill Sans';
 }
 
 .list-show-page {
-  background-color: $color-main-light;
+  background-color: $color-main-light-accent;
   padding: 1rem 1.5em 25rem 1.5rem;
+}
+
+.list-show-info {
+  background-color: $color-main-light;
+  padding: 1rem;
+  border-color: $color-main-dark;
+  border-style: solid;
+  border-width: .3rem;
+  border-radius: 8px;
 }
 
 .list-show-list-name {
   color: $color-font-dark;
   font-family: $font-master;
   font-weight: bolder;
+  font-size: 32px;
   margin-bottom: 1rem;
 }
 
 .list-show-list-body {
   color: $color-font-dark;
   font-family: $font-master;
+  font-size: 16px;
   margin-bottom: 1rem;
 }
+
+.list-show-list-item-header {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
