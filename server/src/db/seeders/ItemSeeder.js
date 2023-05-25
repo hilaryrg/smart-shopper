@@ -5,59 +5,68 @@ class ItemSeeder {
     const list1 = await List.query().findOne({ name: "Test Grocery List" })
     const list2 = await List.query().findOne({ name: "Test Drugstore List" })
     const list3 = await List.query().findOne({ name: "Test Grocery List 2" })
-    
-        // const items =[{
-        //     name: "paper towels"},
-        // {
-        //     name: "shampoo"
-        // },
-        // {
-        //     name: "spaghetti",
-        //     status: "in cart"
-        // },
-        // {
-        //     name: "cucumbers"
-        // },
-        // {
-        //     name: "ground turkey",
-        //     availability: "out of stock",
-        //     status: "substituted"
-        // },
-        // {
-        //     name: "butter",
-        //     status: "in cart"
-        // },
-        // {
-        //     name: "parmesan cheese"
-        // },
-        // {
-        //     name: "m&ms"
-        // },
-        // {
-        //     name: "tomatoes",
-        //     status: "in cart"
-        // },
-        // {
-        //     name: "spinach"
-        // }]
 
-
-        for (const user of users) {
-            const inDB = await User.query().findOne( {username: user.username} )
-            if (!inDB) {
-                await User.query().insert(user)
-                //add relation querys that are written below
-            }
+    const items = [
+        { 
+            name: "paper towels", 
+            lists: [list1] 
+        },
+        { 
+            name: "shampoo", 
+            lists: [list1, list2, list3] 
+        },
+        { 
+            name: "spaghetti", 
+            status: "in cart", 
+            lists: [list1, list3] 
+        },
+        { 
+            name: "cucumbers", 
+            lists: [list1] 
+        },
+        { 
+            name: "ground turkey", 
+            availability: "out of stock", 
+            status: "substituted", 
+            lists: [list3] 
+        },
+        { 
+            name: "butter", 
+            status: "in cart", 
+            lists: [list3] 
+        },
+        { 
+            name: "parmesan cheese", 
+            lists: [list1] 
+        },
+        { 
+            name: "m&ms", 
+            lists: [list2, list3] 
+        },
+        { 
+            name: "tomatoes", 
+            status: "in cart", 
+            lists: [list1, list3] 
+        },
+        {
+            name: "spinach", 
+            lists: [list1] 
         }
-const shampoo = await Item.query().insertAndFetch({name: "shampoo"})
-const cucumbers = await Item.query().insertAndFetch({name: "cucumbers"})
-const broccoli = await Item.query().insertAndFetch({name: "broccoli"})
-        await shampoo.$relatedQuery("lists").relate( list1.id );
-        await shampoo.$relatedQuery("lists").relate( list2.id );
-        await shampoo.$relatedQuery("lists").relate( list3.id );
-        await cucumbers.$relatedQuery("lists").relate( list3.id );
-        await broccoli.$relatedQuery("lists").relate( list3.id )
+    ];
 
+    for (const itemData of items) {
+        const { name, lists, ...itemProps } = itemData
+        let item = await Item.query().findOne({ name })
+
+        if (!item) {
+            item = await Item.query().insert({ name, ...itemProps })
+
+        if (lists) {
+            const listIds = lists.map(list => list.id)
+            await item.$relatedQuery("lists").relate(listIds)
+        }
+        }
+    }
     }
 }
 
