@@ -3,8 +3,10 @@ import { List } from "../../../models/index.js"
 import ListSerializer from "../../../db/serializers/ListsSerializer.js"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
+import listItemsRouter from "./listItemsRouter.js"
 
 const listsRouter = new express.Router()
+listsRouter.use("/:listId/items", listItemsRouter)
 
 listsRouter.get("/", async (req, res) => {
     try {

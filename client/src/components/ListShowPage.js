@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import AddItemForm from "./AddItemForm"
 
 const ListShow = (props) => {
     const [list, setList] = useState({
@@ -36,9 +37,23 @@ const ListShow = (props) => {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
     }
 
+    const capFirstLetter = (str) => {
+        if (!str) return ""
+        const wordString = str.split(" ")
+        const capitalizedWords = wordString.map((word) => {
+            if (word.length === 0) {
+                return word
+            }
+            const capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            return capitalizedWord
+        })
+        const properCaseString = capitalizedWords.join(" ")
+        return properCaseString
+    }
+
     const listItems = list.items.map(item => {
         return (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>{capFirstLetter(item.name)}</li>
         )
     })
 
@@ -47,7 +62,7 @@ const ListShow = (props) => {
             <div className="list-show-page">
                 <div className="grid-container">
                     <div className="grid-x grid-margin-x">
-                        <div className="small-12 medium-8 large-8 list-show-info">
+                        <div className="small-12 medium-7 large-7 list-show-info">
                             <h1 className="list-show-list-name">{list.name}</h1>
                             <div className="list-show-list-body">
                                 <p>Description: {toProperCase(list.description)}</p>
@@ -58,6 +73,9 @@ const ListShow = (props) => {
                                     {listItems}
                                 </ul>
                             </div>
+                        </div>
+                        <div className="small-12 medium-5 large-5 add-new-item-form">
+                            <AddItemForm setList={setList} listId={listId}/>
                         </div>
                     </div>
                 </div>

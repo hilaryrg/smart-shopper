@@ -1,6 +1,6 @@
 class ItemSerializer {
     static showItemDetails(itemArray) {
-        const newItems = listArray.map(list=> {
+        const newItems = itemArray.map(item => {
             return {
                 id: item.id,
                 name: item.name,
@@ -18,6 +18,10 @@ class ItemSerializer {
             newItem[attribute] = item[attribute]
         }
         return newItem
+    }
+
+    static serializedItems(items) {
+        return items.map(item => this.serializedItem(item))
     }
 }
 

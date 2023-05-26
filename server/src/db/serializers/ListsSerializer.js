@@ -20,7 +20,6 @@ class ListSerializer {
             newList[attribute] = list[attribute]
         }
         newList.items = await list.$relatedQuery("items")
-        console.log(newList)
         return newList
     }
 }

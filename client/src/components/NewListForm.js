@@ -67,80 +67,82 @@ const NewListForm = props => {
     }
 
     return (
-        <div className="new-list-form">
-            <h1 className="new-list-form-header">New List</h1>
-            <ErrorList errors={errors}/>
-            <form onSubmit={handleSubmit}>
-                <label className="new-list-form-label">
-                    Name
+        <div className="new-list-form-background">
+            <div className="new-list-form">
+                <h1 className="new-list-form-header">New List</h1>
+                <ErrorList errors={errors}/>
+                <form onSubmit={handleSubmit}>
+                    <label className="new-list-form-label">
+                        Name
+                        <input
+                            className="new-list-form-input"
+                            type="text"
+                            name="name"
+                            placeholder="Weekly Grocery List"
+                            onChange={handleInputChange}
+                            value={newList.name}
+                        />
+                    </label>
+                    <label className="new-list-form-label">
+                        Description
+                        <input
+                            className="new-list-form-input"
+                            type="text"
+                            name="description"
+                            placeholder="This is my weekly grocery list that includes all of the ingredients needed for my M-F meal prep"
+                            onChange={handleInputChange}
+                            value={newList.description}
+                        />
+                    </label>
+                    <label className="new-list-form-label">
+                        Type
+                        <select
+                            className="new-list-form-input"
+                            name="type"
+                            id="type"
+                            onChange={handleInputChange}>
+                            <option value=""></option>
+                            <option value="grocery">Grocery</option>
+                            <option value="drugstore">Drugstore</option>
+                            <option value="general">General</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label className="new-list-form-label">
+                        Store
+                        <select
+                            className="new-list-form-input"
+                            name="store"
+                            id="store"
+                            onChange={handleInputChange}>
+                            <option value=""></option>
+                            <option value="target">Target</option>
+                            <option value="trader joe\'s">Trader Joe's</option>
+                            <option value="star market">Star Market</option>
+                            <option value="amazon">Amazon</option>
+                            <option value="cvs">CVS</option>
+                            <option value="walgreens">Walgreens</option>
+                        </select>
+                    </label>
+                    <label className="new-list-form-label">
+                        Status
+                        <select
+                            className="new-list-form-input"
+                            name="status"
+                            id="status"
+                            onChange={handleInputChange}>
+                            <option value="to do">To Do</option>
+                            <option value="in progress">In Progress</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </label>
                     <input
-                        className="new-list-form-input"
-                        type="text"
-                        name="name"
-                        placeholder="Weekly Grocery List"
-                        onChange={handleInputChange}
-                        value={newList.name}
+                        className="new-list-form-button"
+                        type="submit"
+                        value="Submit"
                     />
-                </label>
-                <label className="new-list-form-label">
-                    Description
-                    <input
-                        className="new-list-form-input"
-                        type="text"
-                        name="description"
-                        placeholder="This is my weekly grocery list that includes all of the ingredients needed for my M-F meal prep"
-                        onChange={handleInputChange}
-                        value={newList.description}
-                    />
-                </label>
-                <label className="new-list-form-label">
-                    Type
-                    <select
-                        className="new-list-form-input"
-                        name="type"
-                        id="type"
-                        onChange={handleInputChange}>
-                        <option value=""></option>
-                        <option value="grocery">Grocery</option>
-                        <option value="drugstore">Drugstore</option>
-                        <option value="general">General</option>
-                        <option value="other">Other</option>
-                    </select>
-                </label>
-                <label className="new-list-form-label">
-                    Store
-                    <select
-                        className="new-list-form-input"
-                        name="store"
-                        id="store"
-                        onChange={handleInputChange}>
-                        <option value=""></option>
-                        <option value="target">Target</option>
-                        <option value="trader joe\'s">Trader Joe's</option>
-                        <option value="star market">Star Market</option>
-                        <option value="amazon">Amazon</option>
-                        <option value="cvs">CVS</option>
-                        <option value="walgreens">Walgreens</option>
-                    </select>
-                </label>
-                <label className="new-list-form-label">
-                    Status
-                    <select
-                        className="new-list-form-input"
-                        name="status"
-                        id="status"
-                        onChange={handleInputChange}>
-                        <option value="to do">To Do</option>
-                        <option value="in progress">In Progress</option>
-                        <option value="done">Done</option>
-                    </select>
-                </label>
-                <input
-                    className="new-list-form-button"
-                    type="submit"
-                    value="Submit"
-                />
-            </form>
+                </form>
+            </div>
         </div>
     )
 
