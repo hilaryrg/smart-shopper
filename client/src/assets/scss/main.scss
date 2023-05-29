@@ -22,6 +22,31 @@ $color-font-dark: #000000;
 $font-master: 'Charter';
 $font-accent: 'Gill Sans';
 
+$nav-bar-hover-lines-transition: all 0.35s ease;
+
+.nav-bar-text {
+  font-family: $font-master;
+  font-weight: bold;
+  color: $color-font-light;
+  transition: $nav-bar-hover-lines-transition;
+  letter-spacing: 1px;
+
+  &:hover {
+    text-underline-position: under;
+    box-shadow: inset 0 -3px $color-font-light;
+  }
+  &:visited {
+    color: $color-font-light;
+  }
+}
+
+.nav-bar-color {
+  background-color: $color-main-dark;
+  ul {
+    background-color: $color-main-dark;
+  }
+}
+
 .registration-form {
   padding: 1rem 1.5em;
   border-radius: .5rem;
@@ -78,15 +103,20 @@ $font-accent: 'Gill Sans';
   }
 }
 
+.new-list-form-background {
+  background: $color-main-light-accent;
+  padding: 5%;
+}
+
 .new-list-form {
   padding: .75rem 1.25em;
   border-radius: .5rem;
-  background-color: $color-main-light-accent;
+  background-color: lighten($color-main-light-accent, 12%);
   width: 80%;
-  margin: 5% auto;
+  margin: auto;
 
   input:focus {
-    opacity: .95;
+    opacity: 1;
   }
 }
 
@@ -107,8 +137,8 @@ $font-accent: 'Gill Sans';
 
 .new-list-form-input {
   border-radius: 30px;
-  border: none;
-  opacity: .7;
+  border: 1px;
+  background-color: lighten($color-main-light-accent, 7%);
   transition: all ease .4s;
 }
 
@@ -153,7 +183,7 @@ $font-accent: 'Gill Sans';
   margin: .5rem;
   border-radius: 5px;
   width: 75%;
-  padding: 1%;
+  padding: 2%;
 }
 
 .list-index-list-name {
@@ -187,19 +217,75 @@ $font-accent: 'Gill Sans';
 }
 
 .list-show-page {
-  background-color: $color-main-light;
+  background-color: $color-main-light-accent;
   padding: 1rem 1.5em 25rem 1.5rem;
+}
+
+.list-show-info {
+  background-color: $color-main-light;
+  padding: 1rem;
+  border-color: $color-main-dark;
+  border-style: solid;
+  border-width: .3rem;
+  border-radius: 8px;
 }
 
 .list-show-list-name {
   color: $color-font-dark;
   font-family: $font-master;
   font-weight: bolder;
+  font-size: 32px;
   margin-bottom: 1rem;
 }
 
 .list-show-list-body {
   color: $color-font-dark;
   font-family: $font-master;
+  font-size: 16px;
   margin-bottom: 1rem;
+}
+
+.list-show-list-item-header {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
+.add-new-item-form {
+  background-color: $color-main-light;
+  margin: 1rem;
+  padding: 1rem;
+  border-color: $color-main-dark;
+  border-style: solid;
+  border-width: .3rem;
+  border-radius: 8px;
+}
+
+.add-new-item-form-header {
+  color: $color-font-dark;
+  font-family: $font-master;
+  font-weight: bolder;
+  font-size: 32px;
+  margin-bottom: 1rem;
+}
+
+.add-new-item-form-button {
+  color: $color-font-light;
+  font-family: $font-master;
+  font-weight: bolder;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  background: $color-main-dark;
+  border: 1.5px solid $color-main-dark;
+  padding: .75rem 1rem .75rem 1rem;
+  display: inline-block;
+  margin-top: .75rem;
+  
+  &:hover {
+    background-color: darken($color-main-dark, 10%);
+    border-color: darken($color-main-dark, 10%);
+  }
 }

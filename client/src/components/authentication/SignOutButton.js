@@ -33,7 +33,7 @@ const SignOutButton = () => {
 
   return (
     <div onClick={signOut}>
-      <Link to="/">
+      <Link to="/" className="nav-bar-text nav-bar-color">
         Sign Out
       </Link>
     </div>
