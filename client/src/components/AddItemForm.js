@@ -27,7 +27,7 @@ const AddItemForm = (props) => {
                     return setErrors(newErrors)
                 } else {
                     const errorMessage = await response.json()
-                    throw new Error(errorMessage)
+                    throw new Error(errorMessage.error)
                 }
             }
             const responseBody = await response.json()

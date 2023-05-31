@@ -113,7 +113,7 @@ const RegistrationForm = () => {
   };
 
   if (shouldRedirect) {
-    location.href = "/lists/new";
+    location.href = "/lists";
   }
 
   return (

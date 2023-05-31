@@ -17,6 +17,7 @@ listItemsRouter.post("/", async (req, res) => {
         
         if (existingItem) {
             console.log("Item already exists in the list!")
+            return res.status(400).json({ error: "Item already exists in the list!" })
         } else {
             console.log("Adding item to list...")
             const newItem = await list.$relatedQuery("items").insert(cleanInput)
@@ -36,7 +37,6 @@ listItemsRouter.post("/", async (req, res) => {
                 // relate the existing item to the list (see code in Item seeder)
             // if it does not use the code below
 
-
     } catch(err) {
         console.log(err)
         if (err instanceof ValidationError) {
@@ -48,15 +48,3 @@ listItemsRouter.post("/", async (req, res) => {
 })
 
 export default listItemsRouter
-
-
-
-// itemsRouter.get("/", async (req, res) => {
-//     try {
-//         const items = await Item.query().select()
-//         const serializedItems = await ItemSerializer.serializedItems(items)
-//         res.status(200).json({ items: serializedItems })
-//     } catch (err) {
-//         res.status(500).json({ errors: err.message })
-//     }
-// })
