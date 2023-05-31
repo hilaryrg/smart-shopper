@@ -17,25 +17,24 @@ listItemsRouter.post("/", async (req, res) => {
         
         if (existingItem) {
             console.log("Item already exists in the list!")
-            return res.status(400).json({ error: "Item already exists in the list!" })
+            const serializedItem = await ItemSerializer.serializedItem(existingItem)
+            return res.status(400).json({ error: "Item already exists in the list!", item:serializedItem })
         } else {
-            console.log("Adding item to list...")
-            const newItem = await list.$relatedQuery("items").insert(cleanInput)
-            const id = cleanInput.listId
-            console.log(cleanInput)
+            const existingItemInDatabase = await Item.query().findOne({ name: cleanInput.name })
+            
+            if(existingItemInDatabase) {
+                console.log("Item already exists in the database...")
+                await list.$relatedQuery("items").relate(existingItemInDatabase)
+                const serializedItem = ItemSerializer.serializedItem(existingItemInDatabase)
+                return res.status(200).json({ item: serializedItem })
+        } else {
+            console.log("Adding item to list & database...")
+            const newItem = await Item.query().insertAndFetch(cleanInput)
+            await list.$relatedQuery("items").relate(newItem)
             const serializedItem = await ItemSerializer.serializedItem(newItem)
             res.status(201).json({ item: serializedItem })
         }
-        
-        // retrieve all existing items on this list
-        // check to see if the new item's name is in the list... probably use 
-        // if it is in the list, return a response with an error saying it already on the list
-        // otherwise, do the following...
-
-        // use the Item.fineOne method to see if the item exists in the db
-            // if it does
-                // relate the existing item to the list (see code in Item seeder)
-            // if it does not use the code below
+    }
 
     } catch(err) {
         console.log(err)
