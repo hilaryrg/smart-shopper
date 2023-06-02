@@ -25,7 +25,7 @@ const ListIndex = (props) => {
         return (
             <div className="list-index-page-callout">
                 <Link className="list-index-list-name" to={`/lists/${list.id}`}> {`${list.name}`} </Link>
-                <p>{list.status}</p>
+                <div>{list.status}</div>
             </div>
         )
     })
@@ -33,7 +33,7 @@ const ListIndex = (props) => {
     return (
         <div className="list-index-page">
             <h2 className="list-index-header">My Lists</h2>
-            <p>{listsList}</p>
+            <div>{listsList}</div>
             <Link className="new-list-link-button" to="/lists/new">New List</Link>
         </div>
     )

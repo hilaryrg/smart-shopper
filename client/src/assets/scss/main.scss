@@ -213,6 +213,7 @@ $nav-bar-hover-lines-transition: all 0.35s ease;
   &:hover {
     background-color: darken($color-main-dark, 10%);
     border-color: darken($color-main-dark, 10%);
+    color: $color-font-light;
   }
 }
 
@@ -288,4 +289,47 @@ $nav-bar-hover-lines-transition: all 0.35s ease;
     background-color: darken($color-main-dark, 10%);
     border-color: darken($color-main-dark, 10%);
   }
+}
+
+.home-page-image-and-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-main-light;
+  padding-bottom: 50%;
+}
+
+.home-page-text-section {
+  flex: 1;
+  text-align: center;
+  margin: 2%;
+}
+
+.home-page-text-title {
+  font-family: $font-accent;
+  font-size: 36px;
+  font-weight: bolder;
+  line-height: 1.2;
+  padding-bottom: 5px;
+}
+
+.home-page-text-body {
+  font-family: $font-master;
+  font-size: 18px;
+}
+
+.home-page-image-container {
+  margin-top: 12%;
+  padding: 0px;
+}
+
+.home-page-image {
+  float: right;
+  width: 65%;
+  height: auto;
+  margin-top: 12%;
+  margin-right: 2%;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
 }
