@@ -49,4 +49,15 @@ listsRouter.get("/:id", async (req, res) => {
     }
 })
 
+listsRouter.delete("/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        await List.query().deleteById(id)
+        return res.status(200).json({ message: "List successfully deleted "})
+    } catch (err) {
+    return res.status(500).json({ errors: err.message })
+    }
+})
+
+
 export default listsRouter
