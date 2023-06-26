@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom"
 
 const ListIndex = (props) => {
     const [ lists, setLists ] = useState([])
+    const [shouldRedirect, setShouldRedirect] = useState(false)
 
     const getLists = async () => {
         try {
@@ -16,13 +17,12 @@ const ListIndex = (props) => {
             console.error("Error in fetch", err.message)
         }
     }
-    const [shouldRedirect, setShouldRedirect] = useState(false)
 
     useEffect(() => {
         getLists()
     }, [])
 
-    const deleteList = async () => {
+    const deleteList = async (listId) => {
         try {
             const response = await fetch(`/api/v1/lists/${listId}`, { method: "DELETE"})
             if(!response.ok) {
@@ -36,19 +36,20 @@ const ListIndex = (props) => {
         }
     }
 
-    const handleOnClickDeleteList = (event) => {
+    const handleOnClickDeleteList = (event, listId) => {
         event.preventDefault()
         deleteList()
     }
 
-    const listsList = lists.map(list => {
+    const listsList = lists.map((list) => {
         return (
-            <div className="list-index-page-callout">
-                <Link className="list-index-list-name" to={`/lists/${list.id}`}> {`${list.name}`} </Link>
+            <div className="list-index-page-callout" key={list.id}>
+                <Link className="list-index-list-name" to={`/lists/${list.id}`}> 
+                    {`${list.name}`} 
+                </Link>
                 <div>{list.status}</div>
-                <button 
-                className="new-list-form-button"
-                onClick={handleOnClickDeleteList}>
+                <button className="new-list-form-button"
+                onClick={(event) => handleOnClickDeleteList(event, list.id)}>
             Delete
             </button>
             </div>

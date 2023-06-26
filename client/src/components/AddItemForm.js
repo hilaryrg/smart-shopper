@@ -66,6 +66,7 @@ const AddItemForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <label>
                     <input
+                        className="add-new-item-form-input"
                         type="string"
                         name="name"
                         onChange={handleInputChange}
